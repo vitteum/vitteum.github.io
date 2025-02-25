@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빛틈</title>
+    <meta name="description" content="틈에서 새어 나오는 사유의 빛">
+    <meta name="keywords" content="빛틈, 빛틈프레스, vitteum">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="빛틈">
+    <meta property="og:description" content="틈에서 새어 나오는 사유의 빛">
+    <meta property="og:image" content="https://www.vitteum.com/thumbnail.png"> <!-- URL to the image you want to display -->
+    <meta property="og:url" content="https://www.vitteum.com"> <!-- URL to your page -->
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="빛틈">
+    <meta name="twitter:description" content="틈에서 새어 나오는 사유의 빛">
+    <meta name="twitter:image" content="https://www.vitteum.com/thumbnail.png"> <!-- URL to the image you want to display -->
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "빛틈, 빛틈프레스, 빛틈출판사",
+      "description": "틈에서 새어 나오는 사유의 빛",
+      "url": "https://www.vitteum.com",
+      "sameAs": [
+        "https://www.instagram.com/vitteum"
+      ]
+    }
+    </script>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">    
+
+<style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .logo-container {
+            position: relative;
+        }
+
+        .logo {
+            position: relative;
+            z-index: 2;
+            width: 200px;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        .light {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
+            animation: flicker 3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.2; filter: blur(10px); }
+            50% { opacity: 0.5; filter: blur(20px); }
+            100% { opacity: 0.3; filter: blur(15px); }
+        }
+    </style>
+    
+</head>
+<body>
+	<a href="instagram.com/vitteum">
+    <div class="logo-container">
+        <div class="light"></div>
+        <img src="logo.png" alt="빛틈 로고" class="logo">
+    </div>
+	</a>
+
+    <script src="script.js"></script>
+</body>
+</html>
