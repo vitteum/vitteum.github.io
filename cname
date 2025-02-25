@@ -1,0 +1,4 @@
+echo "www.godokpress.com" > CNAME
+git add CNAME
+git commit -m "www.godokpress.com"
+git push origin main
