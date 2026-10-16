@@ -15,6 +15,10 @@ keywords: 게이, 퀴어, 심리학, 사랑, 관계
 aladin: https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=395532431&start=pcsearch_recen
 yes24: https://www.yes24.com/product/goods/191941279
 kyobo: https://product.kyobobook.co.kr/detail/S000220241242
+table_of_contents: ""
+author_bio: ""
+translator_bio: ""
+recommendations: ""
 ---
 ## 책 소개
 
