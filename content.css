@@ -527,3 +527,16 @@ a {
     border-color: #444;
   }
 }
+/* 도서 목록의 표지 이미지 크기 제한 */
+
+.book-grid {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 240px));
+  justify-content: start;
+}
+
+.book-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
