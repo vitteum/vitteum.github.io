@@ -1,44 +1,167 @@
-<header class="top">
+<!doctype html>
+<html lang="ko">
 
-  <!-- 왼쪽: 오리 / 기존 첫 화면 -->
-  <a
-    href="/"
-    class="duck-link"
-    aria-label="빛틈 첫 화면으로 이동"
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% assign page_title = page.title | default: site.title %}
+  {% assign page_description = page.description | default: site.description %}
+
+  <!-- 페이지 제목 -->
+  <title>{{ page_title | escape }} | 빛틈</title>
+
+  <!-- SEO -->
+  <meta
+    name="description"
+    content="{{ page_description | strip_html | escape }}"
   >
-    <img
-      src="/duck.png"
-      alt="빛틈 오리"
-      width="44"
-      height="44"
+
+  <link
+    rel="canonical"
+    href="{{ page.url | absolute_url }}"
+  >
+
+  <!-- Open Graph -->
+  <meta
+    property="og:type"
+    content="{% if page.layout == 'book' %}book{% else %}website{% endif %}"
+  >
+
+  <meta
+    property="og:title"
+    content="{{ page_title | escape }}"
+  >
+
+  <meta
+    property="og:description"
+    content="{{ page_description | strip_html | escape }}"
+  >
+
+  <meta
+    property="og:url"
+    content="{{ page.url | absolute_url }}"
+  >
+
+  <meta
+    property="og:image"
+    content="{{ page.cover | default: '/thumbnail.png' | absolute_url }}"
+  >
+
+  <!-- 파비콘 -->
+  <link
+    rel="icon"
+    href="{{ '/favicon.ico' | relative_url }}"
+  >
+
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="{{ '/content.css' | relative_url }}"
+  >
+
+</head>
+
+<body>
+
+  <!-- ==================================
+       HEADER
+       ================================== -->
+
+  <header class="top">
+
+    <!-- 왼쪽: 오리 / 기존 빛틈 첫 화면 -->
+    <a
+      href="/"
+      class="duck-link"
+      aria-label="빛틈 첫 화면으로 이동"
     >
-  </a>
-
-  <!-- 중앙: 빛틈 로고 / 도서 페이지 -->
-  <a
-    href="/books/"
-    class="wordmark"
-    aria-label="빛틈 도서 페이지로 이동"
-  >
-    <picture>
-      <source
-        srcset="/logo_white.png"
-        media="(prefers-color-scheme: dark)"
-      >
-
       <img
-        src="/logo.png"
-        alt="빛틈"
-        width="48"
+        src="{{ '/duck.png' | relative_url }}"
+        alt="빛틈 오리"
+        width="44"
+        height="44"
       >
-    </picture>
-  </a>
+    </a>
 
-  <!-- 오른쪽 메뉴 -->
-  <nav aria-label="주 메뉴">
-    <a href="/books/">BOOKS</a>
-    <a href="/notes/">NOTES</a>
-    <a href="/about/">ABOUT</a>
-  </nav>
 
-</header>
+    <!-- 중앙: 빛틈 로고 / 도서 페이지 -->
+    <a
+      href="/books/"
+      class="wordmark"
+      aria-label="빛틈 도서 페이지로 이동"
+    >
+
+      <picture>
+
+        <!-- 다크 모드 -->
+        <source
+          srcset="{{ '/logo_white.png' | relative_url }}"
+          media="(prefers-color-scheme: dark)"
+        >
+
+        <!-- 기본 로고 -->
+        <img
+          src="{{ '/logo.png' | relative_url }}"
+          alt="빛틈"
+          width="48"
+        >
+
+      </picture>
+
+    </a>
+
+
+    <!-- 오른쪽: 메뉴 -->
+    <nav aria-label="주 메뉴">
+
+      <a href="/books/">
+        BOOKS
+      </a>
+
+      <a href="/notes/">
+        NOTES
+      </a>
+
+      <a href="/about/">
+        ABOUT
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- ==================================
+       MAIN CONTENT
+       ================================== -->
+
+  <main class="content">
+
+    {{ content }}
+
+  </main>
+
+
+  <!-- ==================================
+       FOOTER
+       ================================== -->
+
+  <footer class="content-footer">
+
+    <a
+      href="https://www.instagram.com/vitteum"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      INSTAGRAM ↗
+    </a>
+
+    <span>
+      © 빛틈
+    </span>
+
+  </footer>
+
+</body>
+</html>
