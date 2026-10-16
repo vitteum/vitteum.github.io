@@ -1,14 +1,122 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-{% assign page_title = page.title | default: site.title %}{% assign page_description = page.description | default: site.description %}
-<title>{{ page_title | escape }} | 빛틈</title><meta name="description" content="{{ page_description | strip_html | escape }}">
-<link rel="canonical" href="{{ page.url | absolute_url }}"><meta property="og:type" content="{% if page.layout == 'book' %}book{% else %}website{% endif %}"><meta property="og:title" content="{{ page_title | escape }}"><meta property="og:description" content="{{ page_description | strip_html | escape }}"><meta property="og:url" content="{{ page.url | absolute_url }}"><meta property="og:image" content="{{ page.cover | default: '/thumbnail.png' | absolute_url }}">
-<link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/content.css"></head>
-<body><header class="top"><a href="/" class="wordmark"><picture>
+<html lang="ko">
 
-  <source srcset="/logo_white.png" media="(prefers-color-scheme: dark)">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <img src="/logo.png" alt="빛틈">
+  {% assign page_title = page.title | default: site.title %}
+  {% assign page_description = page.description | default: site.description %}
 
-</picture></a><nav><a href="/books/">BOOKS</a><a href="/notes/">NOTES</a><a href="/about/">ABOUT</a></nav></header>
-<main class="content">{{ content }}</main><footer class="content-footer"><a href="https://www.instagram.com/vitteum" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a> <span>© 빛틈</span></footer></body></html>
+  <title>{{ page_title | escape }} | 빛틈</title>
+
+  <meta name="description" content="{{ page_description | strip_html | escape }}">
+
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  <meta property="og:type" content="{% if page.layout == 'book' %}book{% else %}website{% endif %}">
+  <meta property="og:title" content="{{ page_title | escape }}">
+  <meta property="og:description" content="{{ page_description | strip_html | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ page.cover | default: '/thumbnail.png' | absolute_url }}">
+
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/content.css">
+
+  <style>
+    /* 상단 로고 크기 고정 */
+    header.top a.wordmark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      flex: 0 0 48px;
+      text-decoration: none;
+    }
+
+    header.top a.wordmark picture {
+      display: block;
+      width: 48px;
+    }
+
+    header.top a.wordmark img {
+      display: block;
+      width: 48px;
+      max-width: 48px;
+      height: auto;
+    }
+
+    header.top a.wordmark:hover {
+      opacity: 0.65;
+    }
+
+    @media (max-width: 640px) {
+      header.top a.wordmark,
+      header.top a.wordmark picture,
+      header.top a.wordmark img {
+        width: 42px;
+        max-width: 42px;
+      }
+
+      header.top a.wordmark {
+        flex-basis: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="top">
+
+    <!-- 빛틈 로고: 클릭하면 메인 홈페이지로 이동 -->
+    <a href="/" class="wordmark" aria-label="빛틈 홈으로 이동">
+
+      <picture>
+        <source
+          srcset="/logo_white.png"
+          media="(prefers-color-scheme: dark)"
+        >
+
+        <img
+          src="/logo.png"
+          alt="빛틈"
+          width="48"
+          style="display:block;width:48px;max-width:48px;height:auto;"
+        >
+      </picture>
+
+    </a>
+
+    <!-- 메뉴 -->
+    <nav aria-label="주 메뉴">
+      <a href="/books/">BOOKS</a>
+      <a href="/notes/">NOTES</a>
+      <a href="/about/">ABOUT</a>
+    </nav>
+
+  </header>
+
+  <!-- 본문 -->
+  <main class="content">
+    {{ content }}
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="content-footer">
+
+    <a
+      href="https://www.instagram.com/vitteum"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      INSTAGRAM ↗
+    </a>
+
+    <span>© 빛틈</span>
+
+  </footer>
+
+</body>
+</html>
