@@ -3,6 +3,7 @@ layout: default
 ---
 
 <article class="book-detail">
+
   <p class="eyebrow">BOOKS</p>
 
   <div class="book-hero">
@@ -16,6 +17,7 @@ layout: default
     {% endif %}
 
     <div>
+
       <h1>{{ page.title }}</h1>
 
       {% if page.subtitle %}
@@ -27,6 +29,7 @@ layout: default
       </p>
 
       <dl>
+
         <dt>출판사</dt>
         <dd>빛틈</dd>
 
@@ -75,9 +78,11 @@ layout: default
           <dt>원제</dt>
           <dd>{{ page.original_title }}</dd>
         {% endif %}
+
       </dl>
 
       <div class="purchase">
+
         {% if page.aladin %}
           <a href="{{ page.aladin }}" target="_blank" rel="noopener noreferrer">
             알라딘 ↗
@@ -95,14 +100,80 @@ layout: default
             교보문고 ↗
           </a>
         {% endif %}
+
       </div>
+
     </div>
+
   </div>
 
-  <div class="prose">
-    {{ content }}
-  </div>
+
+  <!-- 책 소개 -->
+
+  {% if content != "" %}
+    <section class="book-section">
+      <div class="prose">
+        {{ content }}
+      </div>
+    </section>
+  {% endif %}
+
+
+  <!-- 목차 -->
+
+  {% if page.table_of_contents %}
+    <section class="book-section">
+      <h2>목차</h2>
+
+      <div class="prose">
+        {{ page.table_of_contents | markdownify }}
+      </div>
+    </section>
+  {% endif %}
+
+
+  <!-- 저자 소개 -->
+
+  {% if page.author_bio %}
+    <section class="book-section">
+      <h2>저자 소개</h2>
+
+      <div class="prose">
+        {{ page.author_bio | markdownify }}
+      </div>
+    </section>
+  {% endif %}
+
+
+  <!-- 역자 소개 -->
+
+  {% if page.translator_bio %}
+    <section class="book-section">
+      <h2>역자 소개</h2>
+
+      <div class="prose">
+        {{ page.translator_bio | markdownify }}
+      </div>
+    </section>
+  {% endif %}
+
+
+  <!-- 추천사 -->
+
+  {% if page.recommendations %}
+    <section class="book-section">
+      <h2>추천사</h2>
+
+      <div class="prose">
+        {{ page.recommendations | markdownify }}
+      </div>
+    </section>
+  {% endif %}
+
 </article>
+
+
+<!-- 검색엔진용 도서 구조화 데이터 -->
 
 <script type="application/ld+json">
 {
