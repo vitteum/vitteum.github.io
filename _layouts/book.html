@@ -170,6 +170,63 @@ layout: default
     </section>
   {% endif %}
 
+
+  <!-- 외부 서평 -->
+
+  {% assign valid_reviews = 0 %}
+
+  {% if page.external_reviews %}
+    {% for review in page.external_reviews %}
+      {% assign review_title = review.title | default: '' | strip %}
+      {% assign review_url = review.url | default: '' | strip %}
+
+      {% if review_title != '' and review_url != '' %}
+        {% assign valid_reviews = valid_reviews | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if valid_reviews > 0 %}
+
+    <section class="book-section external-reviews">
+
+      <h2>외부 서평</h2>
+
+      <div class="prose">
+
+        <ul>
+          {% for review in page.external_reviews %}
+
+            {% assign review_title = review.title | default: '' | strip %}
+            {% assign review_url = review.url | default: '' | strip %}
+            {% assign review_source = review.source | default: '' | strip %}
+
+            {% if review_title != '' and review_url != '' %}
+
+              <li>
+                <a
+                  href="{{ review_url | escape }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {% if review_source != '' %}
+                    {{ review_source | escape }} —
+                  {% endif %}
+                  {{ review_title | escape }} ↗
+                </a>
+              </li>
+
+            {% endif %}
+
+          {% endfor %}
+        </ul>
+
+      </div>
+
+    </section>
+
+  {% endif %}
+
 </article>
 
 
