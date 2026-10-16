@@ -1,0 +1,24 @@
+title: 빛틈
+description: 빛틈 출판사의 책과 글
+url: https://www.vitteum.com
+baseurl: ""
+lang: ko
+markdown: kramdown
+collections:
+  books:
+    output: true
+    permalink: /books/:name/
+  notes:
+    output: true
+    permalink: /notes/:name/
+defaults:
+  - scope: {path: "", type: books}
+    values: {layout: book}
+  - scope: {path: "", type: notes}
+    values: {layout: note}
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .pages.yml

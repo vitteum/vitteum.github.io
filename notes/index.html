@@ -1,0 +1,7 @@
+---
+layout: default
+title: 편집자의 글
+description: 빛틈의 편집과 출판에 관한 글.
+permalink: /notes/
+---
+<p class="eyebrow">VITTEUM</p><h1>NOTES</h1>{% assign notes = site.notes | sort: 'date' | reverse %}{% for note in notes %}<a class="note-row" href="{{ note.url | relative_url }}"><span>{{ note.title }}</span><time>{{ note.date | date: '%Y.%m.%d' }}</time></a>{% endfor %}

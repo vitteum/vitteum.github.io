@@ -1,0 +1,7 @@
+---
+layout: default
+title: 출간 도서
+description: 빛틈이 펴낸 책을 소개합니다.
+permalink: /books/
+---
+<p class="eyebrow">VITTEUM</p><h1>BOOKS</h1><div class="book-grid">{% assign books = site.books | sort: 'publication_date' | reverse %}{% for book in books %}<a class="book-card" href="{{ book.url | relative_url }}">{% if book.cover %}<img src="{{ book.cover | relative_url }}" alt="{{ book.title | escape }} 표지" loading="lazy">{% else %}<div class="no-cover" aria-hidden="true"></div>{% endif %}<h2>{{ book.title }}</h2><p>{{ book.author }}</p></a>{% endfor %}</div>
