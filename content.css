@@ -1,4 +1,29 @@
 /* ========================================
+   기본 설정
+======================================== */
+
+:root {
+  color-scheme: light dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #171717;
+  font-family: Arial, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  line-height: 1.75;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* ========================================
    상단 헤더
 ======================================== */
 
@@ -15,6 +40,7 @@
 
   border-bottom: 1px solid #ddd;
 }
+
 
 /* ========================================
    왼쪽 오리
@@ -33,16 +59,15 @@
 
 .top .duck-link img {
   display: block;
-
   width: 100%;
   height: auto;
-
   object-fit: contain;
 }
 
 .top .duck-link:hover {
   opacity: 0.65;
 }
+
 
 /* ========================================
    중앙 빛틈 로고
@@ -61,6 +86,7 @@
   justify-content: center;
 
   width: 48px;
+  flex: none;
 
   text-decoration: none;
 }
@@ -72,16 +98,15 @@
 
 .top .wordmark img {
   display: block;
-
   width: 100%;
   height: auto;
-
   object-fit: contain;
 }
 
 .top .wordmark:hover {
   opacity: 0.65;
 }
+
 
 /* ========================================
    오른쪽 메뉴
@@ -109,11 +134,204 @@
   opacity: 0.65;
 }
 
+
+/* ========================================
+   콘텐츠 영역
+======================================== */
+
+.content {
+  max-width: 880px;
+  margin: 72px auto 110px;
+  padding: 0 30px;
+  min-height: 48vh;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: #777;
+}
+
+.content h1 {
+  font-size: clamp(27px, 4vw, 42px);
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+  margin: 10px 0 32px;
+}
+
+
+/* ========================================
+   도서 목록
+======================================== */
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 44px 28px;
+}
+
+.book-card {
+  text-decoration: none;
+}
+
+.book-card img,
+.no-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  background: #f4f4f4;
+}
+
+.book-card h2 {
+  font-size: 17px;
+  margin: 14px 0 0;
+}
+
+.book-card p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* ========================================
+   도서 상세 페이지
+======================================== */
+
+.book-hero {
+  display: grid;
+  grid-template-columns: minmax(180px, 290px) 1fr;
+  gap: 48px;
+}
+
+.book-hero .cover {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.subtitle {
+  font-size: 18px;
+}
+
+
+/* ========================================
+   도서 정보
+======================================== */
+
+.book-detail dl {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 8px 16px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.book-detail dt {
+  color: #777;
+}
+
+.book-detail dd {
+  margin: 0;
+}
+
+
+/* ========================================
+   구매 링크
+======================================== */
+
+.purchase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.purchase a {
+  border: 1px solid #aaa;
+  padding: 7px 14px;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.purchase a:hover {
+  background: #171717;
+  color: #fff;
+}
+
+
+/* ========================================
+   본문
+======================================== */
+
+.prose {
+  max-width: 720px;
+  margin-top: 65px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.prose h2 {
+  margin-top: 52px;
+  font-size: 23px;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ========================================
+   NOTES
+======================================== */
+
+.note-row {
+  padding: 22px 0;
+  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.note-row time,
+.date {
+  color: #777;
+  font-size: 13px;
+}
+
+
+/* ========================================
+   하단 푸터
+======================================== */
+
+.content-footer {
+  border-top: 1px solid #ddd;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 25px 30px 45px;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 12px;
+}
+
+.content-footer a {
+  text-decoration: none;
+}
+
+
 /* ========================================
    모바일
 ======================================== */
 
 @media (max-width: 640px) {
+
+  /* 헤더 */
 
   .top {
     padding: 20px 22px;
@@ -122,22 +340,121 @@
   }
 
   /* 오리 */
+
   .top .duck-link {
     width: 38px;
     flex-basis: 38px;
   }
 
   /* 중앙 로고 */
+
   .top .wordmark {
     width: 38px;
   }
 
   /* 오른쪽 메뉴 */
+
   .top nav {
     gap: 10px;
   }
 
   .top nav a {
     font-size: 10px;
+    letter-spacing: 0.03em;
   }
+
+  /* 콘텐츠 */
+
+  .content {
+    margin: 46px auto 80px;
+    padding: 0 22px;
+  }
+
+  /* 도서 상세 */
+
+  .book-hero {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .book-hero .cover {
+    max-width: 260px;
+  }
+
+  /* 도서 목록 */
+
+  .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 14px;
+  }
+
+}
+
+
+/* ========================================
+   작은 모바일 화면
+======================================== */
+
+@media (max-width: 380px) {
+
+  .top {
+    padding: 18px 14px;
+  }
+
+  .top .duck-link {
+    width: 30px;
+    flex-basis: 30px;
+  }
+
+  .top .wordmark {
+    width: 30px;
+  }
+
+  .top nav {
+    gap: 7px;
+  }
+
+  .top nav a {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+}
+
+
+/* ========================================
+   다크 모드
+======================================== */
+
+@media (prefers-color-scheme: dark) {
+
+  body {
+    background: #080808;
+    color: #eee;
+  }
+
+  .top,
+  .note-row,
+  .content-footer {
+    border-color: #444;
+  }
+
+  .eyebrow,
+  .book-card p,
+  .book-detail dt,
+  .note-row time,
+  .date {
+    color: #aaa;
+  }
+
+  .book-card img,
+  .no-cover {
+    background: #222;
+  }
+
+  .purchase a:hover {
+    background: #eee;
+    color: #080808;
+  }
+
 }
