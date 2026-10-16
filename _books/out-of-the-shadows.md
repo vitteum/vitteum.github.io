@@ -9,7 +9,7 @@ status: published
 price: 32000
 pages: 592
 format: 125 × 188mm · 양장
-cover: /media/out-of-the-shadows-cover.png
+cover: /media/out-of-the-shadows-cover-1.png
 description: 월트 오데츠가 게이 남성의 삶과 욕망, 사랑과 관계를 탐구한 책. 함정훈 옮김, 빛틈 출판.
 keywords: 게이, 퀴어, 심리학, 사랑, 관계
 aladin: https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=395532431&start=pcsearch_recen
