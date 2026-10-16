@@ -540,3 +540,41 @@ a {
   aspect-ratio: auto;
   object-fit: contain;
 }
+/* BOOKS 목록 이미지 크기 조정 */
+
+.content .book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 240px);
+  gap: 44px 28px;
+  justify-content: start;
+}
+
+.content .book-grid .book-card {
+  display: block;
+  width: 240px;
+  max-width: 100%;
+}
+
+.content .book-grid .book-card img {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .content .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 14px;
+  }
+
+  .content .book-grid .book-card {
+    width: 100%;
+  }
+
+  .content .book-grid .book-card img {
+    max-width: 100%;
+  }
+}
