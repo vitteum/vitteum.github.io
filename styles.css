@@ -1,1 +1,101 @@
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;width:100%}body{background:#fff;color:#000;font-family:Arial,Helvetica,sans-serif;overflow:hidden}.stage{position:relative;height:calc(100vh - 50px);height:calc(100dvh - 50px);width:100%;overflow:hidden}.brand{position:absolute;top:32px;left:50%;transform:translateX(-50%);width:90px;z-index:2}.brand img{display:block;width:100%;height:auto}.duck-link{position:absolute;bottom:120px;left:50%;width:100px;transform:translateX(-50%);z-index:2;display:block;cursor:pointer;animation:floatDuck 5s ease-in-out infinite;outline-offset:8px}.duck{display:block;width:100%;transform-origin:center 80%;transition:transform .25s ease}.duck img{display:block;width:100%;height:auto}.duck-link:hover .duck,.duck-link:focus-visible .duck{transform:scale(1.12) rotate(-5deg);animation:duckWiggle .5s ease-in-out infinite alternate}.duck-link:active .duck{transform:scale(1.06)}.wave-container{position:absolute;bottom:0;width:100%;overflow:hidden;line-height:0}.waves{display:block;width:calc(100% + 1.3px);height:200px}.parallax>use{fill:rgba(128,128,128,.5);animation:moveWaves 25s cubic-bezier(.55,.5,.45,.5) infinite}.parallax>use:nth-child(1){animation-delay:-2s;animation-duration:7s}.parallax>use:nth-child(2){animation-delay:-3s;animation-duration:10s}.parallax>use:nth-child(3){animation-delay:-4s;animation-duration:13s}.parallax>use:nth-child(4){animation-delay:-5s;animation-duration:20s}footer{height:50px;display:flex;align-items:center;justify-content:center;background:#fff}.instagram-link{display:flex;align-items:center;justify-content:center;color:#000;text-decoration:none}.instagram-link:hover{opacity:.65}@keyframes floatDuck{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-50px)}}@keyframes duckWiggle{from{transform:scale(1.12) rotate(-5deg)}to{transform:scale(1.12) rotate(5deg)}}@keyframes moveWaves{0%{transform:translate3d(-90px,0,0)}100%{transform:translate3d(85px,0,0)}}@media(max-width:600px){.brand{width:80px;top:28px}}@media(prefers-color-scheme:dark){body,footer{background:#000;color:#fff}.instagram-link{color:#fff}.parallax>use{fill:rgba(255,255,255,.5)}}@media(prefers-reduced-motion:reduce){.duck-link,.parallax>use,.duck-link:hover .duck,.duck-link:focus-visible .duck{animation:none}.duck{transition:none}}
+/* ========================================
+   빛틈 메인 화면 - 오리 움직임
+======================================== */
+
+/* 오리가 물 위를 천천히 떠다니는 움직임 */
+
+@keyframes duckDrift {
+
+  0% {
+    transform: translate(0, 0);
+  }
+
+  15% {
+    transform: translate(5px, -2px);
+  }
+
+  35% {
+    transform: translate(12px, 2px);
+  }
+
+  55% {
+    transform: translate(7px, 4px);
+  }
+
+  75% {
+    transform: translate(-4px, 1px);
+  }
+
+  90% {
+    transform: translate(-2px, -2px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+
+}
+
+
+/* 오리가 몸을 기우뚱하는 움직임 */
+
+@keyframes duckWobble {
+
+  0% {
+    transform: rotate(-3deg);
+  }
+
+  20% {
+    transform: rotate(2deg);
+  }
+
+  40% {
+    transform: rotate(4deg);
+  }
+
+  60% {
+    transform: rotate(-2deg);
+  }
+
+  80% {
+    transform: rotate(-4deg);
+  }
+
+  100% {
+    transform: rotate(-3deg);
+  }
+
+}
+
+
+/* 오리 전체가 좌우로 떠다님 */
+
+.duck-link .duck-float {
+  display: block;
+
+  animation: duckDrift 7.5s ease-in-out infinite;
+}
+
+
+/* 오리 몸이 좌우로 기울어짐 */
+
+.duck-link .duck {
+  display: block;
+
+  transform-origin: 50% 78%;
+
+  animation: duckWobble 5.8s ease-in-out infinite;
+}
+
+
+/* 움직임 최소화 설정을 사용하는 경우 */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .duck-link .duck-float,
+  .duck-link .duck {
+    animation: none;
+  }
+
+}
