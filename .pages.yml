@@ -1,0 +1,86 @@
+media:
+  input: media
+  output: /media
+
+content:
+  - name: books
+    label: BOOKS
+    type: collection
+    path: content/books
+    view:
+      fields: [title, author, date]
+    fields:
+      - name: title
+        label: 도서명
+        type: string
+        required: true
+
+      - name: subtitle
+        label: 부제
+        type: string
+
+      - name: original_title
+        label: 원제
+        type: string
+
+      - name: author
+        label: 저자
+        type: string
+
+      - name: translator
+        label: 역자
+        type: string
+
+      - name: date
+        label: 출간일
+        type: date
+
+      - name: isbn
+        label: ISBN
+        type: string
+
+      - name: price
+        label: 정가
+        type: number
+
+      - name: cover
+        label: 표지 이미지
+        type: image
+
+      - name: description
+        label: 책 소개
+        type: rich-text
+
+      - name: toc
+        label: 목차
+        type: rich-text
+
+      - name: seo_description
+        label: 검색엔진 설명
+        type: text
+
+      - name: body
+        label: 상세 소개 및 관련 콘텐츠
+        type: rich-text
+
+  - name: notes
+    label: NOTES
+    type: collection
+    path: content/notes
+    fields:
+      - name: title
+        label: 글 제목
+        type: string
+        required: true
+
+      - name: date
+        label: 작성일
+        type: date
+
+      - name: description
+        label: 요약
+        type: text
+
+      - name: body
+        label: 본문
+        type: rich-text
