@@ -136,15 +136,14 @@ content:
     type: file
     path: about/index.md
     fields:
-      - name: layout
-        label: 레이아웃
-        type: hidden
-        default: default
-
       - name: title
         label: 페이지 제목
         type: string
         required: true
+
+      - name: description
+        label: 검색엔진 설명
+        type: text
 
       - name: body
         label: 출판사 소개
