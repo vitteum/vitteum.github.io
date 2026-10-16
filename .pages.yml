@@ -130,6 +130,7 @@ content:
         label: 본문
         type: rich-text
 
+
   - name: about
     label: ABOUT
     type: file
