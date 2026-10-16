@@ -129,3 +129,22 @@ content:
       - name: body
         label: 본문
         type: rich-text
+
+  - name: about
+    label: ABOUT
+    type: file
+    path: about/index.md
+    fields:
+      - name: layout
+        label: 레이아웃
+        type: hidden
+        default: default
+
+      - name: title
+        label: 페이지 제목
+        type: string
+        required: true
+
+      - name: body
+        label: 출판사 소개
+        type: rich-text
