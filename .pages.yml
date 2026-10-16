@@ -107,6 +107,29 @@ content:
         label: 추천사
         type: rich-text
 
+      # 외부 서평
+
+      - name: external_reviews
+        label: 외부 서평
+        type: object
+        list: true
+
+        fields:
+          - name: source
+            label: 매체명
+            type: string
+
+          - name: title
+            label: 서평 제목
+            type: string
+            required: true
+
+          - name: url
+            label: 서평 URL
+            type: string
+            required: true
+
+
   - name: notes
     label: NOTES
     type: collection
@@ -135,6 +158,7 @@ content:
     label: ABOUT
     type: file
     path: about/index.md
+
     fields:
       - name: title
         label: 페이지 제목
