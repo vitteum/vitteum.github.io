@@ -7,8 +7,10 @@ content:
     label: BOOKS
     type: collection
     path: _books
+
     view:
       fields: [title, author, publication_date]
+
     fields:
       - name: title
         label: 도서명
@@ -83,14 +85,33 @@ content:
         label: 교보문고 구매 링크
         type: string
 
+      # 도서 상세 콘텐츠
+
       - name: body
-        label: 책 소개 및 관련 콘텐츠
+        label: 책 소개
+        type: rich-text
+
+      - name: table_of_contents
+        label: 목차
+        type: rich-text
+
+      - name: author_bio
+        label: 저자 소개
+        type: rich-text
+
+      - name: translator_bio
+        label: 역자 소개
+        type: rich-text
+
+      - name: recommendations
+        label: 추천사
         type: rich-text
 
   - name: notes
     label: NOTES
     type: collection
     path: _notes
+
     fields:
       - name: title
         label: 글 제목
