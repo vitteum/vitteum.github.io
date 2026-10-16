@@ -479,3 +479,51 @@ a {
     width: 28px;
   }
 }
+/* ========================================
+   도서 상세 콘텐츠
+======================================== */
+
+.book-section {
+  margin-top: 64px;
+}
+
+.book-section > h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+
+  margin: 0 0 24px;
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid #ddd;
+}
+
+.book-section .prose {
+  margin-top: 0;
+  max-width: 720px;
+}
+
+.book-section .prose p {
+  margin: 0 0 18px;
+}
+
+.book-section .prose ul,
+.book-section .prose ol {
+  padding-left: 22px;
+}
+
+@media (max-width: 640px) {
+  .book-section {
+    margin-top: 48px;
+  }
+
+  .book-section > h2 {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .book-section > h2 {
+    border-color: #444;
+  }
+}
