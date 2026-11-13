@@ -101,6 +101,30 @@ layout: default
           </a>
         {% endif %}
 
+        {% assign ebook_url = page.ebook_aladin | strip %}
+        {% assign ebook_scheme = ebook_url | slice: 0, 8 %}
+        {% if ebook_scheme == 'https://' %}
+          <a href="{{ ebook_url | escape }}" target="_blank" rel="noopener noreferrer">
+            알라딘 전자책 ↗
+          </a>
+        {% endif %}
+
+        {% assign ebook_url = page.ebook_yes24 | strip %}
+        {% assign ebook_scheme = ebook_url | slice: 0, 8 %}
+        {% if ebook_scheme == 'https://' %}
+          <a href="{{ ebook_url | escape }}" target="_blank" rel="noopener noreferrer">
+            YES24 전자책 ↗
+          </a>
+        {% endif %}
+
+        {% assign ebook_url = page.ebook_kyobo | strip %}
+        {% assign ebook_scheme = ebook_url | slice: 0, 8 %}
+        {% if ebook_scheme == 'https://' %}
+          <a href="{{ ebook_url | escape }}" target="_blank" rel="noopener noreferrer">
+            교보문고 전자책 ↗
+          </a>
+        {% endif %}
+
       </div>
 
     </div>
