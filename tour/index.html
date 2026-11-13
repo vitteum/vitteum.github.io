@@ -4,6 +4,7 @@ title: TOUR
 permalink: /tour/
 ---
 {% assign book = site.books | where: 'slug', 'out-of-the-shadows' | first %}
+{% assign tour = site.data.tour %}
 <style>
 .tour { max-width: 760px; margin: 0 auto; }
 .tour-header { display: grid; grid-template-columns: minmax(75px, 125px) 1fr; gap: clamp(1rem, 4vw, 2rem); align-items: center; }
@@ -20,56 +21,38 @@ permalink: /tour/
 <article class="tour">
   <header class="tour-header">
     <img src="{{ '/media/out-of-the-shadows-cover.png' | relative_url }}" alt="" width="125">
-    <div><p class="eyebrow">TOUR</p><h1>우리는 왜 사랑을 견디지 못하는가</h1><p><a href="{{ '/books/out-of-the-shadows/' | relative_url }}">책 소개와 구매처 보기 ↗</a></p></div>
+    <div><p class="eyebrow">TOUR</p><h1>{{ tour.heading | escape }}</h1><p><a href="{{ '/books/out-of-the-shadows/' | relative_url }}">책 소개와 구매처 보기 ↗</a></p></div>
   </header>
   <section id="reading-guide">
-    <h2>어디부터 읽을까?</h2>
-    <p>마음에 남는 장면을 다섯 문항에서 골라보세요. 답변을 바탕으로 먼저 펼쳐볼 장을 안내합니다.</p>
+    <h2>{{ tour.guide_heading | escape }}</h2>
+    <p>{{ tour.guide_intro | escape }}</p>
     <details><summary>독서 안내 시작하기</summary>
       <form id="tour-questions">
-        <fieldset><legend>1. 요즘 관계에서 자주 마음에 걸리는 장면은?</legend>
-          <label><input type="radio" name="q0" value="0" required> 친구들 앞에서 좋아하는 사람 이야기가 나오면 말이 짧아진다.</label>
-          <label><input type="radio" name="q0" value="1" required> 도움을 청하려다 혼자 해결하기로 한다.</label>
-          <label><input type="radio" name="q0" value="2" required> 새로 만난 사람과 있다가 헤어진 사람이 떠오른다.</label>
-          <label><input type="radio" name="q0" value="3" required> 자주 만나지만 서로를 뭐라고 소개할지 모르겠다.</label>
+        {% assign answer_keys = 'a,b,c,d' | split: ',' %}
+        {% for question in tour.questions %}
+        {% assign question_index = forloop.index0 %}
+        <fieldset><legend>{{ forloop.index }}. {{ question.prompt | escape }}</legend>
+          {% for slot in (0..3) %}
+          {% assign answer_index = question_index | plus: slot | modulo: 4 %}
+          {% assign key = answer_keys[answer_index] %}
+          <label><input type="radio" name="q{{ question_index }}" value="{{ answer_index }}" required> {{ question[key] | escape }}</label>
+          {% endfor %}
         </fieldset>
-        <fieldset><legend>2. 다음 중 더 오래 생각해보고 싶은 말은?</legend>
-          <label><input type="radio" name="q1" value="1" required> “괜찮아. 혼자 하면 돼.”</label>
-          <label><input type="radio" name="q1" value="2" required> “벌써 그렇게 오래됐어?”</label>
-          <label><input type="radio" name="q1" value="3" required> “우리 사이를 꼭 정해야 해?”</label>
-          <label><input type="radio" name="q1" value="0" required> “굳이 거기서까지 말해야 해?”</label>
-        </fieldset>
-        <fieldset><legend>3. 가까운 사람에게 가장 해보고 싶은 말은?</legend>
-          <label><input type="radio" name="q2" value="2" required> 그 사람 이야기를 아직 하고 싶어.</label>
-          <label><input type="radio" name="q2" value="3" required> 우리가 지금 어떻게 지내는지 같이 얘기해보고 싶어.</label>
-          <label><input type="radio" name="q2" value="0" required> 내 얘기를 할 때 네 표정부터 살피게 돼.</label>
-          <label><input type="radio" name="q2" value="1" required> 오늘은 해결책보다 내 이야기를 들어줬으면 해.</label>
-        </fieldset>
-        <fieldset><legend>4. 책에서 어떤 이야기를 만나고 싶나요?</legend>
-          <label><input type="radio" name="q3" value="3" required> 친구나 연인이라는 말로 다 담기지 않는 관계</label>
-          <label><input type="radio" name="q3" value="0" required> 남들의 시선이 자기 목소리처럼 들리게 되는 과정</label>
-          <label><input type="radio" name="q3" value="1" required> 혼자서 버티는 데 익숙해진 사람이 도움을 받는 순간</label>
-          <label><input type="radio" name="q3" value="2" required> 잃어버린 관계가 지금의 삶에 남는 방식</label>
-        </fieldset>
-        <fieldset><legend>5. 오늘 한 장만 펼친다면 어떤 질문을 따라가고 싶나요?</legend>
-          <label><input type="radio" name="q4" value="0" required> 나는 언제부터 이 이야기를 숨기게 됐을까?</label>
-          <label><input type="radio" name="q4" value="1" required> 기댈 곳이 생겨도 왜 혼자 버티게 될까?</label>
-          <label><input type="radio" name="q4" value="2" required> 그 사람이 떠난 뒤에도 내게 남은 것은 뭘까?</label>
-          <label><input type="radio" name="q4" value="3" required> 우리는 어떤 사이로 지내고 싶은 걸까?</label>
-        </fieldset>
+        {% endfor %}
         <button type="submit">먼저 읽을 장 보기</button> <button type="reset">다시 고르기</button>
       </form>
       <div id="tour-result" tabindex="-1" aria-live="polite" hidden></div>
       <noscript><p><a href="{{ '/books/out-of-the-shadows/' | relative_url }}">책 소개에서 목차 보기</a></p></noscript>
     </details>
   </section>
-  {% assign music = book.tour_apple_music | strip %}
+  {% assign music = tour.apple_music | default: book.tour_apple_music | strip %}
   {% assign music_prefix = music | slice: 0, 24 %}
   {% if music_prefix == 'https://music.apple.com/' %}
-  <section><h2>이 책과 함께 듣는 음악</h2><p><a href="{{ music | escape }}">Apple Music에서 듣기 ↗</a></p></section>
+  <section><h2>{{ tour.music_heading | escape }}</h2><p><a href="{{ music | escape }}">Apple Music에서 듣기 ↗</a></p></section>
   {% endif %}
-  <section><h2>책이 독자를 만난 자리</h2>
-    {% for post in book.tour_instagram %}
+  <section><h2>{{ tour.instagram_heading | escape }}</h2>
+    {% assign posts = tour.instagram | default: book.tour_instagram %}
+    {% for post in posts %}
       {% assign post_url = post.url | strip %}
       {% assign post_prefix = post_url | slice: 0, 26 %}
       {% if post_prefix == 'https://www.instagram.com/' %}
@@ -80,8 +63,9 @@ permalink: /tour/
     {% endfor %}
     <p><a href="https://www.instagram.com/vitteum/">빛틈 인스타그램에서 보기 ↗</a></p>
   </section>
-  <section><h2>함께 읽을 거리</h2><ul>
-    {% for item in book.related_content %}
+  <section><h2>{{ tour.reading_heading | escape }}</h2><ul>
+    {% assign reading = tour.reading | default: book.related_content %}
+    {% for item in reading %}
       {% assign url = item.url | strip %}
       {% assign scheme = url | slice: 0, 8 %}
       {% if scheme == 'https://' %}<li><a href="{{ url | escape }}">{{ item.title | escape }} ↗</a></li>{% endif %}
@@ -89,9 +73,10 @@ permalink: /tour/
     <li><a href="{{ '/notes/' | relative_url }}">편집자의 글 ↗</a></li>
   </ul></section>
 </article>
+<script type="application/json" id="tour-chapters">[{{ tour.result_0 | jsonify | replace: '<', '\u003c' }},{{ tour.result_1 | jsonify | replace: '<', '\u003c' }},{{ tour.result_2 | jsonify | replace: '<', '\u003c' }},{{ tour.result_3 | jsonify | replace: '<', '\u003c' }}]</script>
 <script>
 (() => {
-  const chapters = [["2장 〈낙인과 수치심〉","‘수치심이란 무엇인가?’부터 펼쳐보세요. 누구 앞에서 어떤 이야기를 삼키게 되는지, 그때 떠오르는 말이 어디서 왔는지 생각해볼 수 있어요."],["5장 〈자아 발견과 자아실현을 가로막는 장애물들〉","‘고립: 숀의 이야기’부터 펼쳐보세요. 혼자 해결하는 데 익숙해진 사람이 다른 사람과 연결될 때 어떤 일이 생기는지 따라가 보세요."],["6장 〈트라우마, 상실, 고립에서 벗어나기〉","‘트라우마와 상실은 어떻게 상호작용하는가’에 나오는 에런의 이야기부터 펼쳐보세요. 지나간 일이 현재의 관계에서 어떻게 되살아나는지 살펴볼 수 있어요."],["7장 〈게이들은 관계를 발명해야 한다〉","‘게이 관계가 작동하는 방식’부터 펼쳐보세요. 서로의 안부를 묻고 시간을 내는 일처럼 두 사람이 이미 하고 있는 일에서 관계를 생각해볼 수 있어요."]];
+  const chapters = JSON.parse(document.querySelector("#tour-chapters").textContent);
   const form = document.querySelector('#tour-questions');
   const result = document.querySelector('#tour-result');
   form.addEventListener('submit', event => {
@@ -101,7 +86,7 @@ permalink: /tour/
     answers.forEach(answer => { counts[answer] += 1; });
     const max = Math.max(...counts);
     const firstChoice = [...answers].reverse().find(answer => counts[answer] === max);
-    const [chapter, description] = chapters[firstChoice];
+    const { title: chapter, description } = chapters[firstChoice];
     const title = document.createElement('h3');
     const text = document.createElement('p');
     title.textContent = chapter;
