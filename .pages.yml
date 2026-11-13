@@ -185,3 +185,9 @@ content:
         label: 출판사 소개
         type: rich-text
 
+
+  - name: book_layout
+    label: 도서 상세 템플릿
+    type: file
+    path: _layouts/book.html
+    format: code
