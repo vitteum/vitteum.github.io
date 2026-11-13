@@ -251,6 +251,26 @@ layout: default
 
   {% endif %}
 
+  {% capture related_content_items %}
+    {% for item in page.related_content %}
+      {% assign link_title = item.title | strip %}
+      {% assign link_url = item.url | strip %}
+      {% assign scheme = link_url | slice: 0, 8 %}
+      {% if link_title != empty and scheme == 'https://' %}
+        <li><a href="{{ link_url | escape }}">{{ link_title | escape }}</a></li>
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+  {% assign related_content_items = related_content_items | strip %}
+  {% if related_content_items != empty %}
+    <section class="book-section">
+      <h2>관련 콘텐츠</h2>
+      <div class="prose">
+        <ul>{{ related_content_items }}</ul>
+      </div>
+    </section>
+  {% endif %}
+
 </article>
 
 
