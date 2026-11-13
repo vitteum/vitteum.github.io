@@ -74,7 +74,18 @@ permalink: /tour/
       {% assign post_prefix = post_url | slice: 0, 26 %}
       {% if post_prefix == 'https://www.instagram.com/' %}
       <article><h3><a href="{{ post_url | escape }}">{{ post.title | escape }} ↗</a></h3>
-        {% if post.image %}<img src="{{ post.image | relative_url | escape }}" alt="" width="240" loading="lazy">{% endif %}
+        {% assign post_path = post_url | remove_first: 'https://www.instagram.com/' | split: '?' | first | split: '#' | first | split: '/' %}
+        {% assign post_kind = post_path[0] %}
+        {% assign post_id = post_path[1] | default: '' %}
+        {% if post_kind == 'reel' or post_kind == 'p' %}
+          {% if post_id != '' %}
+          <iframe src="https://www.instagram.com/{{ post_kind }}/{{ post_id | url_encode }}/embed/"
+            title="{{ post.title | escape }} · Instagram" loading="lazy" allow="fullscreen; encrypted-media"
+            width="400" height="650" style="display:block;width:100%;max-width:400px;border:0;border-radius:12px;"></iframe>
+          {% endif %}
+        {% elsif post.image %}
+          <img src="{{ post.image | relative_url | escape }}" alt="" width="240" loading="lazy">
+        {% endif %}
       </article>
       {% endif %}
     {% endfor %}
