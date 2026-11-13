@@ -91,15 +91,23 @@ permalink: /tour/
     {% endfor %}
     <p><a href="https://www.instagram.com/vitteum/">빛틈 인스타그램에서 보기 ↗</a></p>
   </section>
-  <section><h2>{{ tour.reading_heading | escape }}</h2><ul>
-    {% assign reading = tour.reading | default: book.related_content %}
-    {% for item in reading %}
+  {% capture tour_reading_links %}
+    {% for item in tour.reading %}
       {% assign url = item.url | strip %}
+      {% assign title = item.title | strip %}
       {% assign scheme = url | slice: 0, 8 %}
-      {% if scheme == 'https://' %}<li><a href="{{ url | escape }}">{{ item.title | escape }} ↗</a></li>{% endif %}
+      {% if scheme == 'https://' and title != '' %}
+        <li><a href="{{ url | escape }}">{{ title | escape }} ↗</a></li>
+      {% endif %}
     {% endfor %}
-    <li><a href="{{ '/notes/' | relative_url }}">편집자의 글 ↗</a></li>
-  </ul></section>
+  {% endcapture %}
+  {% assign tour_reading_links = tour_reading_links | strip %}
+  {% if tour_reading_links != '' %}
+  <section>
+    <h2>{{ tour.reading_heading | escape }}</h2>
+    <ul>{{ tour_reading_links }}</ul>
+  </section>
+  {% endif %}
 </article>
 <script type="application/json" id="tour-chapters">[{{ tour.result_0 | jsonify | replace: '<', '\u003c' }},{{ tour.result_1 | jsonify | replace: '<', '\u003c' }},{{ tour.result_2 | jsonify | replace: '<', '\u003c' }},{{ tour.result_3 | jsonify | replace: '<', '\u003c' }}]</script>
 <script>
