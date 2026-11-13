@@ -132,6 +132,8 @@ external_reviews:
   - source: 브런치
     title: 불편하지 않아 하는 것, 그것만으로 부족한
     url: https://brunch.co.kr/@m8ner/129
+related_content:
+  - {}
 ---
 사랑은 반드시 재발명되어야 한다.
 
