@@ -142,6 +142,20 @@ content:
             required: true
 
 
+      - name: related_content
+        label: 관련 콘텐츠
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 콘텐츠 제목
+            type: string
+            required: true
+          - name: url
+            label: 콘텐츠 URL
+            type: string
+            required: true
+
   - name: notes
     label: NOTES
     type: collection
@@ -186,8 +200,3 @@ content:
         type: rich-text
 
 
-  - name: book_layout
-    label: 도서 상세 템플릿
-    type: file
-    path: _layouts/book.html
-    format: code
