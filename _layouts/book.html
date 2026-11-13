@@ -81,51 +81,45 @@ layout: default
 
       </dl>
 
-      <div class="purchase">
+      {% assign purchase_stores = '알라딘,YES24,교보문고' | split: ',' %}
 
-        {% if page.aladin %}
-          <a href="{{ page.aladin }}" target="_blank" rel="noopener noreferrer">
-            알라딘 ↗
-          </a>
-        {% endif %}
+      {% assign purchase_keys = 'aladin,yes24,kyobo' | split: ',' %}
+      {% capture purchase_links %}
+        {% for key in purchase_keys %}
+          {% assign purchase_url = page[key] | strip %}
+          {% assign scheme = purchase_url | slice: 0, 8 %}
+          {% assign http_scheme = purchase_url | slice: 0, 7 %}
+          {% if scheme == 'https://' or http_scheme == 'http://' %}
+            <a href="{{ purchase_url | escape }}" target="_blank" rel="noopener noreferrer">{{ purchase_stores[forloop.index0] }} ↗</a>
+          {% endif %}
+        {% endfor %}
+      {% endcapture %}
+      {% assign purchase_links = purchase_links | strip %}
+      {% if purchase_links != empty %}
+        <div role="group" aria-labelledby="purchase-print">
+          <p id="purchase-print"><strong>종이책</strong></p>
+          <div class="purchase">{{ purchase_links }}</div>
+        </div>
+      {% endif %}
 
-        {% if page.yes24 %}
-          <a href="{{ page.yes24 }}" target="_blank" rel="noopener noreferrer">
-            YES24 ↗
-          </a>
-        {% endif %}
-
-        {% if page.kyobo %}
-          <a href="{{ page.kyobo }}" target="_blank" rel="noopener noreferrer">
-            교보문고 ↗
-          </a>
-        {% endif %}
-
-        {% assign ebook_url = page.ebook_aladin | strip %}
-        {% assign ebook_scheme = ebook_url | slice: 0, 8 %}
-        {% if ebook_scheme == 'https://' %}
-          <a href="{{ ebook_url | escape }}" target="_blank" rel="noopener noreferrer">
-            알라딘 전자책 ↗
-          </a>
-        {% endif %}
-
-        {% assign ebook_url = page.ebook_yes24 | strip %}
-        {% assign ebook_scheme = ebook_url | slice: 0, 8 %}
-        {% if ebook_scheme == 'https://' %}
-          <a href="{{ ebook_url | escape }}" target="_blank" rel="noopener noreferrer">
-            YES24 전자책 ↗
-          </a>
-        {% endif %}
-
-        {% assign ebook_url = page.ebook_kyobo | strip %}
-        {% assign ebook_scheme = ebook_url | slice: 0, 8 %}
-        {% if ebook_scheme == 'https://' %}
-          <a href="{{ ebook_url | escape }}" target="_blank" rel="noopener noreferrer">
-            교보문고 전자책 ↗
-          </a>
-        {% endif %}
-
-      </div>
+      {% assign purchase_keys = 'ebook_aladin,ebook_yes24,ebook_kyobo' | split: ',' %}
+      {% capture purchase_links %}
+        {% for key in purchase_keys %}
+          {% assign purchase_url = page[key] | strip %}
+          {% assign scheme = purchase_url | slice: 0, 8 %}
+          {% assign http_scheme = purchase_url | slice: 0, 7 %}
+          {% if scheme == 'https://' or http_scheme == 'http://' %}
+            <a href="{{ purchase_url | escape }}" target="_blank" rel="noopener noreferrer">{{ purchase_stores[forloop.index0] }} ↗</a>
+          {% endif %}
+        {% endfor %}
+      {% endcapture %}
+      {% assign purchase_links = purchase_links | strip %}
+      {% if purchase_links != empty %}
+        <div role="group" aria-labelledby="purchase-ebook">
+          <p id="purchase-ebook"><strong>전자책</strong></p>
+          <div class="purchase">{{ purchase_links }}</div>
+        </div>
+      {% endif %}
 
     </div>
 
