@@ -126,6 +126,10 @@ layout: default
   </div>
 
 
+  {% if page.url == '/books/out-of-the-shadows/' %}
+    <p><a href="{{ '/tour/' | relative_url }}">이 책의 TOUR 둘러보기 ↗</a></p>
+  {% endif %}
+
   <!-- 책 소개 -->
 
   {% if content != "" %}
