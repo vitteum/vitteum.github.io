@@ -15,6 +15,9 @@ keywords: 게이, 퀴어, 심리학, 사랑, 관계
 aladin: https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=395532431&start=pcsearch_recen
 yes24: https://www.yes24.com/product/goods/191941279
 kyobo: https://product.kyobobook.co.kr/detail/S000220241242
+ebook_aladin: https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=406871750&start=pebook
+ebook_yes24: https://www.yes24.com/product/goods/199645192
+ebook_kyobo: https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000013765729
 table_of_contents: |-
   추천의 글: 나를 지키는 방법에 대하여  
   추천의 글: 사랑은 재발명되어야 한다  
