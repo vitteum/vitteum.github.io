@@ -156,6 +156,27 @@ content:
             type: string
             required: true
 
+      - name: tour_apple_music
+        label: TOUR Apple Music 플레이리스트 URL
+        type: string
+
+      - name: tour_instagram
+        label: TOUR 인스타그램 게시물
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 게시물 제목
+            type: string
+            required: true
+          - name: url
+            label: 인스타그램 게시물 URL
+            type: string
+            required: true
+          - name: image
+            label: 대표 이미지
+            type: image
+
   - name: notes
     label: NOTES
     type: collection
