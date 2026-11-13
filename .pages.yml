@@ -85,6 +85,18 @@ content:
         label: 교보문고 구매 링크
         type: string
 
+      - name: ebook_aladin
+        label: 알라딘 전자책 구매 링크
+        type: string
+
+      - name: ebook_yes24
+        label: YES24 전자책 구매 링크
+        type: string
+
+      - name: ebook_kyobo
+        label: 교보문고 전자책 구매 링크
+        type: string
+
       # 도서 상세 콘텐츠
 
       - name: body
@@ -173,8 +185,3 @@ content:
         label: 출판사 소개
         type: rich-text
 
-  - name: book_layout
-    label: 도서 상세 템플릿
-    type: file
-    path: _layouts/book.html
-    format: code
