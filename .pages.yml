@@ -177,6 +177,142 @@ content:
             label: 대표 이미지
             type: image
 
+  - name: tour
+    label: TOUR
+    type: file
+    path: _data/tour.json
+    format: json
+    fields:
+      - name: heading
+        label: 투어 제목
+        type: string
+        required: true
+      - name: guide_heading
+        label: 독서 안내 제목
+        type: string
+        required: true
+      - name: guide_intro
+        label: 독서 안내 소개
+        type: text
+        required: true
+      - name: music_heading
+        label: 음악 섹션 제목
+        type: string
+        required: true
+      - name: instagram_heading
+        label: 인스타그램 섹션 제목
+        type: string
+        required: true
+      - name: reading_heading
+        label: 함께 읽을 거리 제목
+        type: string
+        required: true
+      - name: questions
+        label: 독서 안내 문항
+        type: object
+        list: true
+        fields:
+          - name: prompt
+            label: 질문
+            type: string
+            required: true
+          - name: a
+            label: 선택지 · 2장 낙인과 수치심
+            type: string
+            required: true
+          - name: b
+            label: 선택지 · 5장 자기 인식과 고립
+            type: string
+            required: true
+          - name: c
+            label: 선택지 · 6장 상실 이후의 관계
+            type: string
+            required: true
+          - name: d
+            label: 선택지 · 7장 관계의 이름과 방식
+            type: string
+            required: true
+      - name: result_0
+        label: 추천 결과 · 2장
+        type: object
+        fields:
+          - name: title
+            label: 결과 제목
+            type: string
+            required: true
+          - name: description
+            label: 추천 설명
+            type: text
+            required: true
+      - name: result_1
+        label: 추천 결과 · 5장
+        type: object
+        fields:
+          - name: title
+            label: 결과 제목
+            type: string
+            required: true
+          - name: description
+            label: 추천 설명
+            type: text
+            required: true
+      - name: result_2
+        label: 추천 결과 · 6장
+        type: object
+        fields:
+          - name: title
+            label: 결과 제목
+            type: string
+            required: true
+          - name: description
+            label: 추천 설명
+            type: text
+            required: true
+      - name: result_3
+        label: 추천 결과 · 7장
+        type: object
+        fields:
+          - name: title
+            label: 결과 제목
+            type: string
+            required: true
+          - name: description
+            label: 추천 설명
+            type: text
+            required: true
+      - name: apple_music
+        label: Apple Music 플레이리스트 URL
+        type: string
+      - name: instagram
+        label: 인스타그램 게시물
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 게시물 제목
+            type: string
+            required: true
+          - name: url
+            label: 게시물 URL
+            type: string
+            required: true
+          - name: image
+            label: 대표 이미지
+            type: image
+      - name: reading
+        label: 함께 읽을 거리
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 링크 제목
+            type: string
+            required: true
+          - name: url
+            label: 링크 URL
+            type: string
+            required: true
+
   - name: notes
     label: NOTES
     type: collection
