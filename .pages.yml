@@ -179,10 +179,20 @@ content:
 
   - name: tour
     label: TOUR
-    type: file
-    path: _data/tour.json
+    type: collection
+    path: _data/tours
     format: json
+    filename: "{fields.book_slug}.json"
+    view:
+      primary: heading
+      fields: [heading, book_slug]
     fields:
+      - name: book_slug
+        label: 도서 주소 이름
+        description: 도서 상세 주소의 마지막 부분을 입력하세요. 예시 out-of-the-shadows
+        type: string
+        pattern: "^[a-z0-9]+(-[a-z0-9]+)*$"
+        required: true
       - name: heading
         label: 투어 제목
         type: string
@@ -217,23 +227,23 @@ content:
             type: string
             required: true
           - name: a
-            label: 선택지 · 2장 낙인과 수치심
+            label: 선택지 A
             type: string
             required: true
           - name: b
-            label: 선택지 · 5장 자기 인식과 고립
+            label: 선택지 A
             type: string
             required: true
           - name: c
-            label: 선택지 · 6장 상실 이후의 관계
+            label: 선택지 A
             type: string
             required: true
           - name: d
-            label: 선택지 · 7장 관계의 이름과 방식
+            label: 선택지 A
             type: string
             required: true
       - name: result_0
-        label: 추천 결과 · 2장
+        label: 추천 결과 · A
         type: object
         fields:
           - name: title
@@ -245,7 +255,7 @@ content:
             type: text
             required: true
       - name: result_1
-        label: 추천 결과 · 5장
+        label: 추천 결과 · B
         type: object
         fields:
           - name: title
@@ -257,7 +267,7 @@ content:
             type: text
             required: true
       - name: result_2
-        label: 추천 결과 · 6장
+        label: 추천 결과 · C
         type: object
         fields:
           - name: title
@@ -269,7 +279,7 @@ content:
             type: text
             required: true
       - name: result_3
-        label: 추천 결과 · 7장
+        label: 추천 결과 · D
         type: object
         fields:
           - name: title
