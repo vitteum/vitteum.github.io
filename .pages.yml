@@ -231,15 +231,15 @@ content:
             type: string
             required: true
           - name: b
-            label: 선택지 A
+            label: 선택지 B
             type: string
             required: true
           - name: c
-            label: 선택지 A
+            label: 선택지 C
             type: string
             required: true
           - name: d
-            label: 선택지 A
+            label: 선택지 D
             type: string
             required: true
       - name: result_0
