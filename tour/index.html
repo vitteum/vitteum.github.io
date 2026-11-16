@@ -3,8 +3,6 @@ layout: default
 title: TOUR
 permalink: /tour/
 ---
-{% assign book = site.books | where: 'slug', 'out-of-the-shadows' | first %}
-{% assign tour = site.data.tour %}
 <style>
 .tour { max-width: 760px; margin: 0 auto; }
 .tour-header { display: grid; grid-template-columns: minmax(75px, 125px) 1fr; gap: clamp(1rem, 4vw, 2rem); align-items: center; }
@@ -18,16 +16,29 @@ permalink: /tour/
 .tour button { font: inherit; padding: .5rem .8rem; cursor: pointer; }
 .tour details form { padding-top: 1rem; }
 </style>
-<article class="tour">
+{% assign tours = site.data.tours | sort %}
+{% if tours.size > 1 %}
+<h1>TOUR</h1>
+<ul>
+{% for entry in tours %}
+  <li><a href="#{{ entry[0] | slugify }}">{{ entry[1].heading | escape }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% for entry in tours %}
+{% assign tour = entry[1] %}
+{% assign book = site.books | where: 'slug', tour.book_slug | first %}
+<article class="tour" id="{{ entry[0] | slugify }}">
   <header class="tour-header">
-    <img src="{{ '/media/out-of-the-shadows-cover.png' | relative_url }}" alt="" width="125">
-    <div><p class="eyebrow">TOUR</p><h1>{{ tour.heading | escape }}</h1><p><a href="{{ '/books/out-of-the-shadows/' | relative_url }}">책 소개와 구매처 보기 ↗</a></p></div>
+    <div>{% if book.cover %}<img src="{{ book.cover | relative_url | escape }}" alt="" width="125">{% endif %}</div>
+    <div><p class="eyebrow">TOUR</p><h1>{{ tour.heading | escape }}</h1>{% if book %}<p><a href="{{ book.url | relative_url }}">책 소개와 구매처 보기 ↗</a></p>{% endif %}</div>
   </header>
-  <section id="reading-guide">
+  {% if tour.questions.size > 0 and tour.result_0.title and tour.result_1.title and tour.result_2.title and tour.result_3.title %}
+  <section>
     <h2>{{ tour.guide_heading | escape }}</h2>
     <p>{{ tour.guide_intro | escape }}</p>
     <details><summary>독서 안내 시작하기</summary>
-      <form id="tour-questions">
+      <form class="tour-questions">
         {% assign answer_keys = 'a,b,c,d' | split: ',' %}
         {% for question in tour.questions %}
         {% assign question_index = forloop.index0 %}
@@ -41,10 +52,11 @@ permalink: /tour/
         {% endfor %}
         <button type="submit">먼저 읽을 장 보기</button> <button type="reset">다시 고르기</button>
       </form>
-      <div id="tour-result" tabindex="-1" aria-live="polite" hidden></div>
-      <noscript><p><a href="{{ '/books/out-of-the-shadows/' | relative_url }}">책 소개에서 목차 보기</a></p></noscript>
+      <div class="tour-result" tabindex="-1" aria-live="polite" hidden></div>
+      {% if book %}<noscript><p><a href="{{ book.url | relative_url }}">책 소개에서 목차 보기</a></p></noscript>{% endif %}
     </details>
   </section>
+  {% endif %}
   {% assign music = tour.apple_music | default: book.tour_apple_music | strip %}
   {% assign music_prefix = music | slice: 0, 24 %}
   {% if music_prefix == 'https://music.apple.com/' %}
@@ -108,13 +120,15 @@ permalink: /tour/
     <ul>{{ tour_reading_links }}</ul>
   </section>
   {% endif %}
+<script type="application/json" class="tour-chapters">[{{ tour.result_0 | jsonify | replace: '<', '\u003c' }},{{ tour.result_1 | jsonify | replace: '<', '\u003c' }},{{ tour.result_2 | jsonify | replace: '<', '\u003c' }},{{ tour.result_3 | jsonify | replace: '<', '\u003c' }}]</script>
 </article>
-<script type="application/json" id="tour-chapters">[{{ tour.result_0 | jsonify | replace: '<', '\u003c' }},{{ tour.result_1 | jsonify | replace: '<', '\u003c' }},{{ tour.result_2 | jsonify | replace: '<', '\u003c' }},{{ tour.result_3 | jsonify | replace: '<', '\u003c' }}]</script>
+{% endfor %}
 <script>
-(() => {
-  const chapters = JSON.parse(document.querySelector("#tour-chapters").textContent);
-  const form = document.querySelector('#tour-questions');
-  const result = document.querySelector('#tour-result');
+document.querySelectorAll(".tour").forEach(article => {
+  const form = article.querySelector(".tour-questions");
+  if (!form) return;
+  const chapters = JSON.parse(article.querySelector(".tour-chapters").textContent);
+  const result = article.querySelector('.tour-result');
   form.addEventListener('submit', event => {
     event.preventDefault();
     const answers = Array.from(new FormData(form).values(), Number);
@@ -132,5 +146,5 @@ permalink: /tour/
     result.focus();
   });
   form.addEventListener('reset', () => { result.hidden = true; result.replaceChildren(); });
-})();
+});
 </script>
