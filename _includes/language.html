@@ -9,26 +9,19 @@
       {% assign language_url = korean_url %}
       {% assign language_code = 'ko' %}
       {% assign language_label = '한국어' %}
-      {% assign current_language = 'English' %}
-      {% assign switch_label = 'Current language: English. Switch to Korean.' %}
     {% else %}
       {% assign language_url = english_page.url %}
       {% assign language_code = 'en' %}
       {% assign language_label = 'English' %}
-      {% assign current_language = '한국어' %}
-      {% assign switch_label = '현재 언어: 한국어. 영어로 전환.' %}
     {% endif %}
-    <a class="language-link" href="{{ language_url | relative_url }}" lang="{% if include.show_current %}{{ page.lang | default: site.lang }}{% else %}{{ language_code }}{% endif %}"
-       hreflang="{{ language_code }}"{% if include.show_current %} aria-label="{{ switch_label }}" title="{{ switch_label }}"{% else %} aria-label="{{ language_label }}" title="{{ language_label }}"{% endif %}>
-      {% assign icon_size = 18 %}
-      {% if include.show_current %}{% assign icon_size = 24 %}{% endif %}
-      <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <a class="language-link" href="{{ language_url | relative_url }}" lang="{{ language_code }}"
+       hreflang="{{ language_code }}" aria-label="{{ language_label }}" title="{{ language_label }}">
+      <svg width="{{ include.size | default: 18 }}" height="{{ include.size | default: 18 }}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
            stroke-width="1.75" aria-hidden="true" focusable="false">
         <circle cx="12" cy="12" r="9.5"/>
         <ellipse cx="12" cy="12" rx="4.25" ry="9.5"/>
         <path d="M2.5 12h19"/>
       </svg>
-      {% if include.show_current %}<span lang="{{ page.lang | default: site.lang }}">{{ current_language }}</span>{% endif %}
     </a>
   {% endif %}
 {%- endif -%}

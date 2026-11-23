@@ -313,13 +313,6 @@ footer {
   text-decoration: none;
 }
 
-.language-link {
-  width: auto;
-  gap: 8px;
-  padding-inline: 8px;
-  font: 500 0.875rem/1.2 system-ui, sans-serif;
-}
-
 .instagram-link:hover,
 .language-link:hover {
   opacity: 0.65;
