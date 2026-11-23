@@ -66,7 +66,7 @@
   <!-- CSS -->
 <link
   rel="stylesheet"
-  href="{{ '/content.css?v=5' | relative_url }}"
+  href="{{ '/content.css?v=6' | relative_url }}"
 >
 
 </head>
@@ -172,8 +172,10 @@
         href="https://www.instagram.com/vitteum"
         target="_blank"
         rel="noopener noreferrer"
+        class="instagram-link"
+        aria-label="{% if lang == 'en' %}Vitteum on Instagram (opens in a new tab){% else %}빛틈 인스타그램 (새 창){% endif %}"
       >
-        INSTAGRAM ↗
+        {% include instagram-icon.html %}
       </a>
       {% include language.html %}
     </div>

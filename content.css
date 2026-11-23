@@ -322,7 +322,7 @@ a {
   justify-content: space-between;
   align-items: center;
 
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .footer-links {
@@ -331,6 +331,7 @@ a {
   gap: 16px;
 }
 
+.content-footer .instagram-link,
 .content-footer .language-link {
   display: inline-flex;
   align-items: center;

@@ -313,6 +313,11 @@ footer {
   text-decoration: none;
 }
 
+.footer-copyright {
+  font: 500 0.875rem/1.2 system-ui, sans-serif;
+  white-space: nowrap;
+}
+
 .language-link {
   width: auto;
   gap: 8px;
