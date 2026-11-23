@@ -66,7 +66,7 @@
   <!-- CSS -->
 <link
   rel="stylesheet"
-  href="{{ '/content.css?v=3' | relative_url }}"
+  href="{{ '/content.css?v=4' | relative_url }}"
 >
 
 </head>
@@ -160,19 +160,20 @@
 
   <footer class="content-footer">
 
-    <a
-      href="https://www.instagram.com/vitteum"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      INSTAGRAM ↗
-    </a>
+    <div class="footer-links">
+      <a
+        href="https://www.instagram.com/vitteum"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        INSTAGRAM ↗
+      </a>
+      {% include language.html %}
+    </div>
 
     <span>
       © {{ publisher }}
     </span>
-
-    {% include language.html %}
 
   </footer>
 

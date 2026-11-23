@@ -4,9 +4,24 @@
   {% if include.head %}
     <link rel="alternate" hreflang="ko" href="{{ korean_url | absolute_url }}">
     <link rel="alternate" hreflang="en" href="{{ english_page.url | absolute_url }}">
-  {% elsif page.lang == 'en' %}
-    <a class="language-link" href="{{ korean_url | relative_url }}" lang="ko" hreflang="ko">한국어</a>
   {% else %}
-    <a class="language-link" href="{{ english_page.url | relative_url }}" lang="en" hreflang="en">English</a>
+    {% if page.lang == 'en' %}
+      {% assign language_url = korean_url %}
+      {% assign language_code = 'ko' %}
+      {% assign language_label = '한국어' %}
+    {% else %}
+      {% assign language_url = english_page.url %}
+      {% assign language_code = 'en' %}
+      {% assign language_label = 'English' %}
+    {% endif %}
+    <a class="language-link" href="{{ language_url | relative_url }}" lang="{{ language_code }}"
+       hreflang="{{ language_code }}" aria-label="{{ language_label }}" title="{{ language_label }}">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.75" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="9.5"/>
+        <ellipse cx="12" cy="12" rx="4.25" ry="9.5"/>
+        <path d="M2.5 12h19"/>
+      </svg>
+    </a>
   {% endif %}
 {%- endif -%}

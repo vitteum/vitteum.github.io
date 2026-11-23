@@ -316,8 +316,23 @@ a {
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   font-size: 12px;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.content-footer .language-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
 }
 
 .content-footer a {
