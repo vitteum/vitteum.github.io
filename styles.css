@@ -47,6 +47,10 @@ body {
   z-index: 2;
 }
 
+.brand-en {
+  width: clamp(168px, 32vw, 224px);
+}
+
 .brand img {
   display: block;
   width: 100%;
@@ -329,8 +333,11 @@ footer {
 @media (max-width: 600px) {
 
   .brand {
-    width: 80px;
     top: 28px;
+  }
+
+  .brand:not(.brand-en) {
+    width: 80px;
   }
 
 }

@@ -91,6 +91,10 @@ a {
   text-decoration: none;
 }
 
+.top .wordmark.wordmark-en {
+  width: clamp(96px, 14vw, 120px);
+}
+
 .top .wordmark picture {
   display: block;
   width: 100%;

@@ -66,7 +66,7 @@
   <!-- CSS -->
 <link
   rel="stylesheet"
-  href="{{ '/content.css?v=4' | relative_url }}"
+  href="{{ '/content.css?v=5' | relative_url }}"
 >
 
 </head>
@@ -97,10 +97,16 @@
     <!-- 중앙: 빛틈 로고 / 도서 페이지 -->
     <a
       href="{{ prefix | append: '/books/' | relative_url }}"
-      class="wordmark"
+      class="wordmark{% if lang == 'en' %} wordmark-en{% endif %}"
       aria-label="{% if lang == 'en' %}Vitteum books{% else %}빛틈 도서 페이지로 이동{% endif %}"
     >
 
+      {% if lang == 'en' %}
+      <picture>
+        <source srcset="{{ '/media/vitteum-wordmark-white.svg' | relative_url }}" media="(prefers-color-scheme: dark)">
+        <img src="{{ '/media/vitteum-wordmark.svg' | relative_url }}" alt="" width="430" height="172">
+      </picture>
+      {% else %}
       <picture>
 
         <!-- 다크 모드 -->
@@ -117,6 +123,7 @@
         >
 
       </picture>
+      {% endif %}
 
     </a>
 
