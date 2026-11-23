@@ -20,7 +20,9 @@
     {% endif %}
     <a class="language-link" href="{{ language_url | relative_url }}" lang="{% if include.show_current %}{{ page.lang | default: site.lang }}{% else %}{{ language_code }}{% endif %}"
        hreflang="{{ language_code }}"{% if include.show_current %} aria-label="{{ switch_label }}" title="{{ switch_label }}"{% else %} aria-label="{{ language_label }}" title="{{ language_label }}"{% endif %}>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      {% assign icon_size = 18 %}
+      {% if include.show_current %}{% assign icon_size = 24 %}{% endif %}
+      <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
            stroke-width="1.75" aria-hidden="true" focusable="false">
         <circle cx="12" cy="12" r="9.5"/>
         <ellipse cx="12" cy="12" rx="4.25" ry="9.5"/>
