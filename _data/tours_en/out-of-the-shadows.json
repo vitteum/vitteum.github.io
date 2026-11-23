@@ -1,0 +1,75 @@
+{
+  "book_slug": "out-of-the-shadows",
+  "heading": "Out of the Shadows",
+  "guide_heading": "Where should I start?",
+  "guide_intro": "Choose the answer that stays with you in each of the five questions. Your answers will suggest a chapter to start with.",
+  "music_heading": "A playlist for the book",
+  "instagram_heading": "The book meets its readers",
+  "reading_heading": "Further reading",
+  "questions": [
+    {
+      "prompt": "Which of these moments has been on your mind lately?",
+      "a": "I say less when someone I like comes up in conversation with friends.",
+      "b": "I think about asking for help and decide to handle it myself.",
+      "c": "I’m with someone new and find myself thinking about someone I lost.",
+      "d": "We see each other often, but I don’t know how to introduce us."
+    },
+    {
+      "prompt": "Which of these lines would you like to sit with a little longer?",
+      "a": "“Do you really need to tell them there, too?”",
+      "b": "“It’s fine. I can do it on my own.”",
+      "c": "“Has it really been that long?”",
+      "d": "“Do we have to put a name to what we are?”"
+    },
+    {
+      "prompt": "What would you most like to say to someone close to you?",
+      "a": "When I tell you about myself, I find myself watching your face.",
+      "b": "Today I’d like you to hear me out.",
+      "c": "I still want to talk about that person.",
+      "d": "I’d like us to talk about how things are between us."
+    },
+    {
+      "prompt": "What kind of story would you like to find in the book?",
+      "a": "How other people’s judgments come to sound like your own voice.",
+      "b": "What happens when someone used to getting by alone accepts help.",
+      "c": "How a relationship you’ve lost stays with you in the present.",
+      "d": "A bond that words like friend or partner can only partly describe."
+    },
+    {
+      "prompt": "If you opened the book to just one chapter today, which question would you follow?",
+      "a": "When did I start keeping this part of my life hidden?",
+      "b": "Why do I keep trying to get by alone even when I have someone to lean on?",
+      "c": "What has stayed with me since that person left?",
+      "d": "What kind of relationship do we want to have?"
+    }
+  ],
+  "result_0": {
+    "title": "Chapter 2 · Stigma and Shame",
+    "description": "Begin with the section on what shame is. Think about what you find yourself holding back, who you hold it back around, and where the words in your head came from."
+  },
+  "result_1": {
+    "title": "Chapter 5 · Obstacles to Self-Discovery and Self-Realization",
+    "description": "Begin with Sean’s story about isolation. Follow what happens when someone accustomed to managing alone begins to connect with others."
+  },
+  "result_2": {
+    "title": "Chapter 6 · Recovering from Trauma, Loss, and Isolation",
+    "description": "Begin with Aaron’s story in the section on how trauma and loss interact. Notice how the past can resurface in a present relationship."
+  },
+  "result_3": {
+    "title": "Chapter 7 · Gay Men Must Invent Relationships",
+    "description": "Begin with the section on how gay relationships work. Think about the things two people already do for each other, like checking in and making time."
+  },
+  "apple_music": "https://music.apple.com/kr/playlist/why-we-cannot-endure-love/pl.u-V9D7ZLEIE0kypY",
+  "instagram": [
+    {
+      "title": "What was the first thing you learned about love?",
+      "url": "https://www.instagram.com/reel/Db5gqsRI_y2/?utm_source=ig_web_copy_link&srtk=MzRlODBiNWFlZA=="
+    }
+  ],
+  "reading": [
+    {
+      "title": "Beyond “Just Something Casual”: Asking About Love Again",
+      "url": "https://www.vitteum.com/en/notes/2026-11-06/"
+    }
+  ]
+}

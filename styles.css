@@ -366,3 +366,8 @@ footer {
   }
 
 }
+
+footer .language-link {
+  margin-inline-start: 1rem;
+  color: inherit;
+}

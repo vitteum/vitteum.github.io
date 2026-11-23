@@ -1,4 +1,5 @@
 ---
+layout: default
 title: 빛틈 소개
 description: 빛틈 출판사 소개
 ---

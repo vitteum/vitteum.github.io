@@ -2,17 +2,23 @@
 layout: default
 ---
 
+{% assign edition = page %}
+{% assign tour_url = '/tour/' %}
+{% if page.lang == 'en' %}
+  {% assign edition = site.books | where: 'slug', page.book_slug | first %}
+  {% assign tour_url = '/en/tour/' %}
+{% endif %}
 <article class="book-detail">
 
   <p class="eyebrow">BOOKS</p>
 
   <div class="book-hero">
 
-    {% if page.cover %}
+    {% if edition.cover %}
       <img
         class="cover"
-        src="{{ page.cover | relative_url }}"
-        alt="{{ page.title | escape }} 표지"
+        src="{{ edition.cover | relative_url }}"
+        alt="{{ page.title | escape }}{% if page.lang == 'en' %} cover{% else %} 표지{% endif %}"
       >
     {% endif %}
 
@@ -25,34 +31,34 @@ layout: default
       {% endif %}
 
       <p>
-        {{ page.author }} 지음{% if page.translator %} · {{ page.translator }} 옮김{% endif %}
+        {{ page.author }}{% if page.lang != 'en' %} 지음{% endif %}{% if page.translator %} · {% if page.lang == 'en' %}Translated by {{ page.translator }}{% else %}{{ page.translator }} 옮김{% endif %}{% endif %}
       </p>
 
       <dl>
 
-        <dt>출판사</dt>
-        <dd>빛틈</dd>
+        <dt>{% if page.lang == 'en' %}Publisher{% else %}출판사{% endif %}</dt>
+        <dd>{% if page.lang == 'en' %}Vitteum{% else %}빛틈{% endif %}</dd>
 
-        {% if page.publication_date %}
-          <dt>출간일</dt>
-          <dd>{{ page.publication_date | date: '%Y.%m.%d' }}</dd>
+        {% if edition.publication_date %}
+          <dt>{% if page.lang == 'en' %}Publication date{% else %}출간일{% endif %}</dt>
+          <dd>{% if page.lang == 'en' %}{{ edition.publication_date | date: '%B %-d, %Y' }}{% else %}{{ edition.publication_date | date: '%Y.%m.%d' }}{% endif %}</dd>
         {% endif %}
 
-        {% if page.pages %}
-          <dt>쪽수</dt>
-          <dd>{{ page.pages }}쪽</dd>
+        {% if edition.pages %}
+          <dt>{% if page.lang == 'en' %}Pages{% else %}쪽수{% endif %}</dt>
+          <dd>{{ edition.pages }}{% if page.lang != 'en' %}쪽{% endif %}</dd>
         {% endif %}
 
         {% if page.format %}
-          <dt>판형</dt>
+          <dt>{% if page.lang == 'en' %}Format{% else %}판형{% endif %}</dt>
           <dd>{{ page.format }}</dd>
         {% endif %}
 
-        {% if page.price %}
-          {% assign price_string = page.price | append: '' %}
+        {% if edition.price %}
+          {% assign price_string = edition.price | append: '' %}
           {% assign price_length = price_string | size %}
 
-          <dt>정가</dt>
+          <dt>{% if page.lang == 'en' %}List price{% else %}정가{% endif %}</dt>
           <dd>
             {%- for digit in (1..price_length) -%}
               {%- assign index = forloop.index0 -%}
@@ -65,28 +71,32 @@ layout: default
               {%- endif -%}
 
               {{- current_digit -}}
-            {%- endfor -%}원
+            {%- endfor -%}{% if page.lang == 'en' %} KRW{% else %}원{% endif %}
           </dd>
         {% endif %}
 
-        {% if page.isbn %}
+        {% if edition.isbn %}
           <dt>ISBN</dt>
-          <dd>{{ page.isbn }}</dd>
+          <dd>{{ edition.isbn }}</dd>
         {% endif %}
 
         {% if page.original_title %}
-          <dt>원제</dt>
+          <dt>{% if page.lang == 'en' %}Original title{% else %}원제{% endif %}</dt>
           <dd>{{ page.original_title }}</dd>
         {% endif %}
 
       </dl>
 
-      {% assign purchase_stores = '알라딘,YES24,교보문고' | split: ',' %}
+      {% if page.lang == 'en' %}
+        {% assign purchase_stores = 'Aladin,YES24,Kyobo' | split: ',' %}
+      {% else %}
+        {% assign purchase_stores = '알라딘,YES24,교보문고' | split: ',' %}
+      {% endif %}
 
       {% assign purchase_keys = 'aladin,yes24,kyobo' | split: ',' %}
       {% capture purchase_links %}
         {% for key in purchase_keys %}
-          {% assign purchase_url = page[key] | strip %}
+          {% assign purchase_url = edition[key] | strip %}
           {% assign scheme = purchase_url | slice: 0, 8 %}
           {% assign http_scheme = purchase_url | slice: 0, 7 %}
           {% if scheme == 'https://' or http_scheme == 'http://' %}
@@ -97,7 +107,7 @@ layout: default
       {% assign purchase_links = purchase_links | strip %}
       {% if purchase_links != empty %}
         <div role="group" aria-labelledby="purchase-print">
-          <p id="purchase-print"><strong>종이책</strong></p>
+          <p id="purchase-print"><strong>{% if page.lang == 'en' %}Print edition{% else %}종이책{% endif %}</strong></p>
           <div class="purchase">{{ purchase_links }}</div>
         </div>
       {% endif %}
@@ -105,7 +115,7 @@ layout: default
       {% assign purchase_keys = 'ebook_aladin,ebook_yes24,ebook_kyobo' | split: ',' %}
       {% capture purchase_links %}
         {% for key in purchase_keys %}
-          {% assign purchase_url = page[key] | strip %}
+          {% assign purchase_url = edition[key] | strip %}
           {% assign scheme = purchase_url | slice: 0, 8 %}
           {% assign http_scheme = purchase_url | slice: 0, 7 %}
           {% if scheme == 'https://' or http_scheme == 'http://' %}
@@ -116,7 +126,7 @@ layout: default
       {% assign purchase_links = purchase_links | strip %}
       {% if purchase_links != empty %}
         <div role="group" aria-labelledby="purchase-ebook">
-          <p id="purchase-ebook"><strong>전자책</strong></p>
+          <p id="purchase-ebook"><strong>{% if page.lang == 'en' %}E-book{% else %}전자책{% endif %}</strong></p>
           <div class="purchase">{{ purchase_links }}</div>
         </div>
       {% endif %}
@@ -127,8 +137,8 @@ layout: default
 
 
   {% for entry in site.data.tours %}
-    {% if entry[1].book_slug == page.slug %}
-      <p><a href="{{ '/tour/' | relative_url }}#{{ entry[0] | slugify }}">이 책의 TOUR 둘러보기 ↗</a></p>
+    {% if entry[1].book_slug == edition.slug %}
+      <p><a href="{{ tour_url | relative_url }}#{{ entry[0] | slugify }}">{% if page.lang == 'en' %}Explore the book tour{% else %}이 책의 TOUR 둘러보기 ↗{% endif %}</a></p>
       {% break %}
     {% endif %}
   {% endfor %}
@@ -148,7 +158,7 @@ layout: default
 
   {% if page.table_of_contents %}
     <section class="book-section">
-      <h2>목차</h2>
+      <h2>{% if page.lang == 'en' %}Contents{% else %}목차{% endif %}</h2>
 
       <div class="prose">
         {{ page.table_of_contents | markdownify }}
@@ -161,7 +171,7 @@ layout: default
 
   {% if page.author_bio %}
     <section class="book-section">
-      <h2>저자 소개</h2>
+      <h2>{% if page.lang == 'en' %}About the author{% else %}저자 소개{% endif %}</h2>
 
       <div class="prose">
         {{ page.author_bio | markdownify }}
@@ -174,7 +184,7 @@ layout: default
 
   {% if page.translator_bio %}
     <section class="book-section">
-      <h2>역자 소개</h2>
+      <h2>{% if page.lang == 'en' %}About the translator{% else %}역자 소개{% endif %}</h2>
 
       <div class="prose">
         {{ page.translator_bio | markdownify }}
@@ -187,7 +197,7 @@ layout: default
 
   {% if page.recommendations %}
     <section class="book-section">
-      <h2>추천사</h2>
+      <h2>{% if page.lang == 'en' %}Praise{% else %}추천사{% endif %}</h2>
 
       <div class="prose">
         {{ page.recommendations | markdownify }}
@@ -215,7 +225,7 @@ layout: default
 
     <section class="book-section external-reviews">
 
-      <h2>외부 서평</h2>
+      <h2>{% if page.lang == 'en' %}Reviews{% else %}외부 서평{% endif %}</h2>
 
       <div class="prose">
 
@@ -265,7 +275,7 @@ layout: default
   {% assign related_content_items = related_content_items | strip %}
   {% if related_content_items != empty %}
     <section class="book-section">
-      <h2>관련 콘텐츠</h2>
+      <h2>{% if page.lang == 'en' %}Related reading{% else %}관련 콘텐츠{% endif %}</h2>
       <div class="prose">
         <ul>{{ related_content_items }}</ul>
       </div>
@@ -281,6 +291,7 @@ layout: default
 {
   "@context": "https://schema.org",
   "@type": "Book",
+  "inLanguage": "ko",
   "name": {{ page.title | jsonify }},
   "author": {
     "@type": "Person",
@@ -288,18 +299,18 @@ layout: default
   },
   "publisher": {
     "@type": "Organization",
-    "name": "빛틈",
+    "name": "{% if page.lang == 'en' %}Vitteum{% else %}빛틈{% endif %}",
     "url": "https://www.vitteum.com"
   },
   "url": {{ page.url | absolute_url | jsonify }}
-  {% if page.isbn %},
-  "isbn": {{ page.isbn | jsonify }}
+  {% if edition.isbn %},
+  "isbn": {{ edition.isbn | jsonify }}
   {% endif %}
-  {% if page.publication_date %},
-  "datePublished": {{ page.publication_date | date: '%Y-%m-%d' | jsonify }}
+  {% if edition.publication_date %},
+  "datePublished": {{ edition.publication_date | date: '%Y-%m-%d' | jsonify }}
   {% endif %}
-  {% if page.cover %},
-  "image": {{ page.cover | absolute_url | jsonify }}
+  {% if edition.cover %},
+  "image": {{ edition.cover | absolute_url | jsonify }}
   {% endif %}
   {% if page.description %},
   "description": {{ page.description | jsonify }}

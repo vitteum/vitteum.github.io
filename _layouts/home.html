@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}">
+  <meta name="keywords" content="빛틈, 빛틈프레스, 빛틈출판사, vitteum">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{% if page.lang == 'en' %}en_US{% else %}ko_KR{% endif %}">
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="https://www.vitteum.com/thumbnail.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title }}">
+  <meta name="twitter:description" content="{{ page.description }}">
+  <meta name="twitter:image" content="https://www.vitteum.com/thumbnail.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"빛틈","alternateName":"Vitteum","url":"https://www.vitteum.com/","logo":"https://www.vitteum.com/logo.png","description":{{ page.description | jsonify }},"sameAs":["https://www.instagram.com/vitteum"]}</script>
+  {% include language.html head=true %}
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="stage" aria-label="{{ page.publisher }}">
+    <picture class="brand">
+      <source srcset="/logo_white.png" media="(prefers-color-scheme: dark)">
+      <img src="/logo.png" alt="{{ page.title }}" width="90" height="104">
+    </picture>
+<!-- 물 위에서 움직이는 오리 -->
+<a
+  class="duck-link"
+  href="{{ page.books_url }}"
+  aria-label="{{ page.books_label }}"
+  title="{{ page.books_label }}"
+>
+  <span class="duck-float">
+    <picture class="duck">
+      <source
+        srcset="/duck_white.png"
+        media="(prefers-color-scheme: dark)"
+      >
+      <img
+        src="/duck.png"
+        alt=""
+        aria-hidden="true"
+      >
+    </picture>
+  </span>
+</a>
+    <div class="wave-container" aria-hidden="true">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+        <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/></defs>
+        <g class="parallax">
+          <use href="#gentle-wave" x="48" y="0"/>
+          <use href="#gentle-wave" x="48" y="3"/>
+          <use href="#gentle-wave" x="48" y="5"/>
+          <use href="#gentle-wave" x="48" y="7"/>
+        </g>
+      </svg>
+    </div>
+  </main>
+  <footer>
+    <a class="instagram-link" href="https://www.instagram.com/vitteum" target="_blank" rel="noopener noreferrer" aria-label="{{ page.instagram_label }}">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+    {% include language.html %}
+  </footer>
+
+</body>
+</html>

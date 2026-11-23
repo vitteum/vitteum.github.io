@@ -1,0 +1,21 @@
+---
+layout: default
+lang: en
+permalink: /en/books/
+ko_url: /books/
+title: Books
+description: Explore the books published by Vitteum.
+---
+<p class="eyebrow">VITTEUM</p>
+<h1>BOOKS</h1>
+<div class="book-grid">
+  {% assign books = site.pages | where: 'layout', 'book' | where: 'lang', 'en' | sort: 'publication_date' | reverse %}
+  {% for book in books %}
+    {% assign edition = site.books | where: 'slug', book.book_slug | first %}
+    <a class="book-card" href="{{ book.url | relative_url }}">
+      {% if edition.cover %}<img src="{{ edition.cover | relative_url }}" alt="" loading="lazy">{% endif %}
+      <h2>{{ book.title | escape }}</h2>
+      <p>{{ book.author | escape }}</p>
+    </a>
+  {% endfor %}
+</div>

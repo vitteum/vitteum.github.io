@@ -1,5 +1,12 @@
 <!doctype html>
-<html lang="ko">
+{% assign lang = page.lang | default: site.lang %}
+{% assign prefix = '' %}
+{% assign publisher = '빛틈' %}
+{% if lang == 'en' %}
+  {% assign prefix = '/en' %}
+  {% assign publisher = 'Vitteum' %}
+{% endif %}
+<html lang="{{ lang }}">
 
 <head>
   <meta charset="utf-8">
@@ -9,7 +16,7 @@
   {% assign page_description = page.description | default: site.description %}
 
   <!-- 페이지 제목 -->
-  <title>{{ page_title | escape }} | 빛틈</title>
+  <title>{{ page_title | escape }} | {{ publisher }}</title>
 
   <!-- SEO -->
   <meta
@@ -21,6 +28,8 @@
     rel="canonical"
     href="{{ page.url | absolute_url }}"
   >
+
+  {% include language.html head=true %}
 
   <!-- Open Graph -->
   <meta
@@ -72,13 +81,13 @@
 
     <!-- 왼쪽: 오리 / 기존 빛틈 첫 화면 -->
     <a
-      href="/"
+      href="{{ prefix | append: '/' | relative_url }}"
       class="duck-link"
-      aria-label="빛틈 첫 화면으로 이동"
+      aria-label="{% if lang == 'en' %}Vitteum home{% else %}빛틈 첫 화면으로 이동{% endif %}"
     >
       <img
         src="{{ '/duck.png' | relative_url }}"
-        alt="빛틈 오리"
+        alt=""
         width="44"
         height="44"
       >
@@ -87,9 +96,9 @@
 
     <!-- 중앙: 빛틈 로고 / 도서 페이지 -->
     <a
-      href="/books/"
+      href="{{ prefix | append: '/books/' | relative_url }}"
       class="wordmark"
-      aria-label="빛틈 도서 페이지로 이동"
+      aria-label="{% if lang == 'en' %}Vitteum books{% else %}빛틈 도서 페이지로 이동{% endif %}"
     >
 
       <picture>
@@ -103,7 +112,7 @@
         <!-- 기본 로고 -->
         <img
           src="{{ '/logo.png' | relative_url }}"
-          alt="빛틈"
+          alt=""
           width="48"
         >
 
@@ -113,19 +122,19 @@
 
 
     <!-- 오른쪽: 메뉴 -->
-    <nav aria-label="주 메뉴">
+    <nav aria-label="{% if lang == 'en' %}Main navigation{% else %}주 메뉴{% endif %}">
 
-      <a href="/books/">
+      <a href="{{ prefix | append: '/books/' | relative_url }}">
         BOOKS
       </a>
 
-      <a href="{{ '/tour/' | relative_url }}">TOUR</a>
+      <a href="{{ prefix | append: '/tour/' | relative_url }}">TOUR</a>
 
-      <a href="/notes/">
+      <a href="{{ prefix | append: '/notes/' | relative_url }}">
         NOTES
       </a>
 
-      <a href="/about/">
+      <a href="{{ prefix | append: '/about/' | relative_url }}">
         ABOUT
       </a>
 
@@ -160,8 +169,10 @@
     </a>
 
     <span>
-      © 빛틈
+      © {{ publisher }}
     </span>
+
+    {% include language.html %}
 
   </footer>
 

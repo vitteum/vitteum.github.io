@@ -1,0 +1,17 @@
+---
+layout: default
+lang: en
+permalink: /en/notes/
+ko_url: /notes/
+title: Notes
+description: Notes on editing and publishing from Vitteum.
+---
+<p class="eyebrow">VITTEUM</p>
+<h1>NOTES</h1>
+{% assign notes = site.pages | where: 'layout', 'note' | where: 'lang', 'en' | sort: 'date' | reverse %}
+{% for note in notes %}
+  <a class="note-row" href="{{ note.url | relative_url }}">
+    <span>{{ note.title | escape }}</span>
+    <time datetime="{{ note.date | date: '%Y-%m-%d' }}">{{ note.date | date: '%b %-d, %Y' }}</time>
+  </a>
+{% endfor %}
